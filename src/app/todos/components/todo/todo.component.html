@@ -1,0 +1,18 @@
+<section
+  class="todo border rounded px-4 py-2 m-auto d-flex align-items-center  justify-content-between">
+
+  <input class="form-check-input"
+         type="checkbox" value=""
+         id="flexCheckDefault"
+         [(ngModel)]="todo.isCompleted" (change)="todoChange.emit()">
+
+  <span>{{todo.title}}</span>
+
+  <button
+    class="btn btn-danger"
+
+  ><i class="fa fa-trash" (click)="deleteTodo.emit(todo.id)"></i>
+
+  </button>
+
+</section>

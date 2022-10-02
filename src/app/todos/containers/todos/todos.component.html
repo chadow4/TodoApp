@@ -1,0 +1,46 @@
+<section class="container" id="todos">
+  <div class="row flex-column">
+    <h6 class="text-center">Vous avez {{countTodos}} tâche(s) restante(s)</h6>
+
+    <div class="col-12 col-sm-6 col-md-4 m-auto mt-5">
+      <app-todo
+        *ngFor="let todo of todos"
+        [todo]="todo"
+        (todoChange)="updateTodo()"
+        (deleteTodo)="removeTodo($event)"
+      >
+      </app-todo>
+
+    </div>
+
+    <form class="m-auto mt-5 col-12 col-sm-6 col-md-4">
+      <input
+        type="text"
+        placeholder="Entrez une nouvelle tâche" (change)="addTodo($event)"
+      />
+      <button type="submit"><i class="fas fa-plus"></i></button>
+    </form>
+
+
+    <div [hidden]="isHidden" class="accordion m-auto mt-5 col-12 col-sm-6 col-md-4" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header d-flex" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+           Voir les tâches terminées ({{countTodosCompleted }})
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+             data-bs-parent="#accordionExample">
+          <app-todo
+            *ngFor="let todo of todosCompleted"
+            [todo]="todo"
+            (todoChange)="updateTodo()"
+            (deleteTodo)="removeTodo($event)"
+          >
+          </app-todo>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
